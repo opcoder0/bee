@@ -1,5 +1,7 @@
 ## Spelling Bee
 
+![Bee](https://github.com/opcoder0/bee/blob/main/images/bee.png)
+
 Bee is a spelling bee software written in Python. The application that enables creators create spelling bee tests for kids using words of their choice. The application uses the user's home directory (`$HOME/.bee`) as the data directory to store the wordlist in a SQLite3 database (`bee.db`). The wordlist is encrypted using a password provided during the creation of a bee.
 
 
