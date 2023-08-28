@@ -46,3 +46,5 @@ This is going to display all the bees that have been added to the bee database.
 ```
 python bee.py -n 'Grade 5 Level 1' -p 'mypa$$w0 rd' -s -i 20
 ```
+
+This is going to start the spelling bee by reading off the word list with a gap of 20 seconds between the words. Be sure to have your speakers unmuted.
