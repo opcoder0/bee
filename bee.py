@@ -12,6 +12,8 @@ import sqlite3
 import time
 import traceback
 from tabulate import tabulate
+import eel
+from random import randint
 
 _verbose = False
 _dbfile = None
@@ -98,23 +100,19 @@ def add_bee(bee_name, password, bee_words):
     return True
 
 
+@eel.expose
 def list_bees():
     global _verbose
     global _dbfile
     conn = None
-    bees = []
+    rows = []
     try:
         conn = sqlite3.connect(_dbfile)
         if conn:
             # for now keep the schema simple
             cursor = conn.cursor()
             rows = cursor.execute('SELECT bee_name FROM bee').fetchall()
-            for row in rows:
-                bees.append([row[0]])
-            print(
-                tabulate(bees,
-                         headers=['Spelling Bees'],
-                         tablefmt="mixed_grid"))
+            return rows
     except sqlite3.Error as error:
         if _verbose:
             errs = (' '.join(error.args))
@@ -122,11 +120,11 @@ def list_bees():
             print('Traceback:')
             exc_type, exc_value, exc_tb = sys.exc_info()
             print(traceback.format_exception(exc_type, exc_value, exc_tb))
-        return False
+        return rows
     finally:
         if conn:
             conn.close()
-    return True
+    return rows
 
 
 def get_bee(bee_name):
@@ -242,6 +240,7 @@ if __name__ == '__main__':
                         '--interval',
                         action='store',
                         help='Time interval (in seconds) between words')
+    parser.add_argument('-g', '--gui', action='store_true', help='Start GUI')
 
     args = parser.parse_args()
 
@@ -294,6 +293,9 @@ if __name__ == '__main__':
             print()
             parser.print_help()
             exit(1)
+    elif args.gui:
+        eel.init("web")
+        eel.start("index.html")
     else:
         parser.print_help()
         sys.exit(0)
