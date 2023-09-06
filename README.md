@@ -4,11 +4,15 @@
 
 Bee is a spelling bee software written in Python. The application that enables creators create spelling bee tests for kids using words of their choice. The application uses the user's home directory (`$HOME/.bee`) as the data directory to store the wordlist in a SQLite3 database (`bee.db`). The wordlist is encrypted using a password provided during the creation of a bee.
 
+## Work In Progress
+
+The GUI work, answer acceptance and checking are in progress.
+
 
 ## Usage
 
 ```
-usage: bee.py [-h] [-w WORDLIST] [-a] [-p PASSWORD] [-n NAME] [-l] [-v] [-s] [-i INTERVAL]
+usage: bee.py [-h] [-w WORDLIST] [-a] [-p PASSWORD] [-n NAME] [-l] [-v] [-s] [-i INTERVAL] [-g]
 
 Spelling bee tool for kids
 
@@ -25,6 +29,7 @@ optional arguments:
   -s, --start           Start a bee
   -i INTERVAL, --interval INTERVAL
                         Time interval (in seconds) between words
+  -g, --gui             Start GUI
 ```
 
 ### To create a bee
